@@ -21,7 +21,7 @@
             android:label="@string/title_activity_add_concept_view"
             android:theme="@style/Theme.Conceptor" />
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.main.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
