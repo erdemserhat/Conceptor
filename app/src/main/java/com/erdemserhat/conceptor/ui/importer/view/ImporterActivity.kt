@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.drawToBitmap
 import com.erdemserhat.conceptor.databinding.AddConceptAcitivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
 import com.google.android.material.snackbar.Snackbar
@@ -26,6 +27,7 @@ class ImporterActivity: BaseActivity<AddConceptAcitivityBinding> () {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         registerLauncher()
     }
@@ -43,6 +45,10 @@ class ImporterActivity: BaseActivity<AddConceptAcitivityBinding> () {
 
     fun saveImage(view: View){
         //Permission Control
+        /**
+         * @param this
+         *
+         */
 
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.TIRAMISU){
             //Android 33+ -> READ_MEDIA_IMAGES
@@ -70,7 +76,8 @@ class ImporterActivity: BaseActivity<AddConceptAcitivityBinding> () {
                 //User gave the permission
                 val intentToGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 activityResultLauncher.launch(intentToGallery)
-                binding.addConceptActivityImageView.setImageBitmap(selectedBitmap)
+               binding.addConceptActivityImageView.setImageBitmap(selectedBitmap)
+
 
             }
 
@@ -138,7 +145,8 @@ class ImporterActivity: BaseActivity<AddConceptAcitivityBinding> () {
                             }
 
                             selectedBitmap?.let {
-                                binding.addConceptActivityImageView.setImageBitmap(it)
+                              binding.addConceptActivityImageView.setImageBitmap(it)
+
                             }
 
 

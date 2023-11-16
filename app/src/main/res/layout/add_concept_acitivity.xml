@@ -17,6 +17,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:gravity="center"
+        android:background="@drawable/select_tool_svgrepo_com"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:id="@+id/addConceptActivityImageView">
