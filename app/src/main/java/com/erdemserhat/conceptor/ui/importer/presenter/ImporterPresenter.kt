@@ -4,17 +4,12 @@ import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.provider.MediaStore
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 class ImporterPresenter : ImporterContract.Presenter {
 
     private var view: ImporterContract.View? = null
 
-    override fun handleImageUpload(view: ImporterContract.View) {
-        // Resim yükleme işlemini gerçekleştir
-        // uploadImage fonksiyonunu çağırabilirsiniz.
-    }
 
     override fun handleImageSelection(data: Intent?) {
         val selectedBitmap: Bitmap
@@ -60,7 +55,7 @@ class ImporterPresenter : ImporterContract.Presenter {
     }
 
     override fun detachView() {
-        TODO("Not yet implemented")
+        this.view=null
     }
 
     override fun hasStoragePermission(): Boolean {

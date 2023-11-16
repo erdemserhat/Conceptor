@@ -16,12 +16,14 @@ import androidx.core.app.ActivityCompat
 import com.erdemserhat.conceptor.databinding.AddConceptAcitivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
 import com.google.android.material.snackbar.Snackbar
+import java.sql.Blob
 
 class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterContract.View {
 
     private lateinit var presenter: ImporterContract.Presenter
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
+    private lateinit var selectedBitmap: Bitmap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +31,8 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
         presenter.attachView(this) // Presenter'ı View'a bağla
         registerLauncher()
 
-
-
     }
+
 
     fun saveImage(view: View) {
         if (presenter.hasStoragePermission()) {
@@ -42,8 +43,16 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
 
     }
 
+    fun saveConcept(view:View){
+        val conceptTitle:String = binding.addConceptActivityEditTextTitle.text.toString()
+        val conceptTranscription:String = binding.addConceptActivityEditTextPostDescription.text.toString()
+        var conceptImage:Bitmap = selectedBitmap
+
+    }
+
 
     override fun showSelectedImage(bitmap: Bitmap?) {
+        selectedBitmap = bitmap!!
         binding.addConceptActivityImageView.setImageBitmap(bitmap)
     }
 
@@ -71,7 +80,7 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
         return this!!
     }
 
-    private fun showPermissionSnackbar(permission: String) {
+    override fun showPermissionSnackbar(permission: String) {
         Snackbar.make(
             findViewById(android.R.id.content),
             "Permission needed for gallery",

@@ -17,7 +17,6 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:gravity="center"
-        android:background="@drawable/select_tool_svgrepo_com"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:id="@+id/addConceptActivityImageView">
@@ -36,22 +35,11 @@
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:onClick="uploadImage"
+            android:onClick="saveImage"
             android:text="@string/upload_image">
 
         </Button>
 
-        <Button
-            android:id="@+id/addConceptActivitySaveImageButton"
-            android:layout_width="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:onClick="saveImage"
-            android:text="@string/save_image">
-
-        </Button>
 
 
 
@@ -66,6 +54,18 @@
         android:hint="@string/write_an_explanation"
         android:lines="10"
         android:inputType="textMultiLine" />
+    <Button
+        android:id="@+id/addConceptActivitySaveImageButton"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="saveConcept"
+        android:text="@string/save_concept">
+
+    </Button>
+
 
 
 
