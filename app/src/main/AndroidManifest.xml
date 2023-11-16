@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    
+    <!--Permissions (you should add your app permissions here)-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -12,23 +16,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Conceptor"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.addconcept.view.AddActivityView"
-            android:exported="false" />
-        <activity
-            android:name=".ui.addconcept.AddConceptView"
-            android:exported="false"
-            android:label="@string/title_activity_add_concept_view"
-            android:theme="@style/Theme.Conceptor" />
+
+       <!--main activity-->
         <activity
             android:name=".ui.main.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--detailer activity-->
+        <activity android:name=".ui.detailer.view.DetailerActivity">
+
+        </activity>
+
+        <!--Importer activity-->
+        <activity android:name=".ui.importer.view.ImporterActivity">
+
+        </activity>
+
+
     </application>
 
 </manifest>

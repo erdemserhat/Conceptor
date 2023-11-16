@@ -14,5 +14,7 @@
     <string name="empty" />
     <string name="upload_image_message">Upload an image about concept</string>
     <string name="upload_image">Upload Image</string>
-    <string name="write_an_explanation">write an explanation...</string>
+    <string name="write_an_explanation">write an explanation…</string>
+    <string name="add_new_concept">Add New Concept</string>
+    <string name="save_image">Save Image</string>
 </resources>

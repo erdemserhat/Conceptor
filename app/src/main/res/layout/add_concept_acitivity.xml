@@ -13,28 +13,49 @@
         android:id="@+id/addConceptActivityEditTextTitle">
     </EditText>
 
-    <TextView
+    <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:clickable="true"
-        android:text="@string/upload_image_message"
         android:gravity="center"
-        android:textSize="20sp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:id="@+id/addConceptActivityImageView"
-        android:contentDescription="@string/empty"
-        android:focusable="true">
-    </TextView>
+        android:id="@+id/addConceptActivityImageView">
+    </ImageView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addConceptActivityUploadImageButton"
-        android:text="@string/upload_image"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center">
-    </Button>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/addConceptActivityUploadImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:onClick="uploadImage"
+            android:text="@string/upload_image">
+
+        </Button>
+
+        <Button
+            android:id="@+id/addConceptActivitySaveImageButton"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:onClick="saveImage"
+            android:text="@string/save_image">
+
+        </Button>
+
+
+
+    </LinearLayout>
+
 
 
     <EditText
