@@ -1,9 +1,10 @@
 package com.erdemserhat.conceptor.ui.importer.view
 
+import ImporterContract
+import ImporterPresenter
+import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,47 +13,46 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.erdemserhat.conceptor.databinding.AddConceptAcitivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
 import com.google.android.material.snackbar.Snackbar
 
-class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>() {
+class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterContract.View {
 
+    private lateinit var presenter: ImporterContract.Presenter
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
-    private var selectedBitmap: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        presenter = ImporterPresenter()
+        presenter.attachView(this) // Presenter'ı View'a bağla
         registerLauncher()
-    }
 
-    override fun getViewBinding(): AddConceptAcitivityBinding {
-        return AddConceptAcitivityBinding.inflate(layoutInflater)
-    }
 
-    fun uploadImage(view: View) {
-        // TODO: Implement image upload logic
+
     }
 
     fun saveImage(view: View) {
-        if (hasStoragePermission()) {
-            openGallery()
+        if (presenter.hasStoragePermission()) {
+            openToGallery()
         } else {
             requestStoragePermission()
         }
+
     }
 
-    private fun hasStoragePermission(): Boolean {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED
-        } else {
-            ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-        }
+
+    override fun showSelectedImage(bitmap: Bitmap?) {
+        binding.addConceptActivityImageView.setImageBitmap(bitmap)
     }
 
-    private fun requestStoragePermission() {
+    override fun showPermissionNeededMessage() {
+        Toast.makeText(this@ImporterActivity, "Permission needed", Toast.LENGTH_SHORT).show()
+    }
+
+
+    override fun requestStoragePermission() {
         val permission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             android.Manifest.permission.READ_MEDIA_IMAGES
         } else {
@@ -66,6 +66,11 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>() {
         }
     }
 
+
+    override fun getViewContext(): Context {
+        return this!!
+    }
+
     private fun showPermissionSnackbar(permission: String) {
         Snackbar.make(
             findViewById(android.R.id.content),
@@ -76,45 +81,34 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>() {
         }.show()
     }
 
-    private fun openGallery() {
-        val intentToGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+    override fun openToGallery() {
+        val intentToGallery =
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         activityResultLauncher.launch(intentToGallery)
     }
 
-    private fun handleImageSelectionResult(data: Intent?) {
-        val imageData = data?.data
-        if (imageData != null) {
-            try {
-                selectedBitmap = if (Build.VERSION.SDK_INT >= 28) {
-                    val source = ImageDecoder.createSource(contentResolver, imageData)
-                    ImageDecoder.decodeBitmap(source)
-                } else {
-                    MediaStore.Images.Media.getBitmap(contentResolver, imageData)
-                }
-                selectedBitmap?.let {
-                    binding.addConceptActivityImageView.setImageBitmap(it)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
 
     private fun registerLauncher() {
         activityResultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
-                    handleImageSelectionResult(result.data)
+                    presenter.handleImageSelection(result.data)
                 }
             }
 
         permissionLauncher =
             registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
                 if (result) {
-                    openGallery()
+                    openToGallery()
                 } else {
-                    Toast.makeText(this@ImporterActivity, "Permission needed", Toast.LENGTH_SHORT).show()
+                    showPermissionNeededMessage()
+
+
                 }
             }
+    }
+
+    override fun getViewBinding(): AddConceptAcitivityBinding {
+        return AddConceptAcitivityBinding.inflate(layoutInflater)
     }
 }
