@@ -8,10 +8,32 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:hint="@string/write_a_title"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:id="@+id/addConceptActivityEditTextTitle">
     </EditText>
+
+    <EditText
+        android:id="@+id/addConceptActivityEditTextPostDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/write_an_explanation"
+        android:lines="10"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/addConceptActivityUploadImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:onClick="saveImage"
+        android:text="@string/upload_image">
+
+    </Button>
 
     <ImageView
         android:layout_width="300dp"
@@ -21,55 +43,6 @@
         android:layout_marginTop="10dp"
         android:id="@+id/addConceptActivityImageView">
     </ImageView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/addConceptActivityUploadImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:onClick="saveImage"
-            android:text="@string/upload_image">
-
-        </Button>
-
-
-
-
-    </LinearLayout>
-
-
-
-    <EditText
-        android:id="@+id/addConceptActivityEditTextPostDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/write_an_explanation"
-        android:lines="10"
-        android:inputType="textMultiLine" />
-    <Button
-        android:id="@+id/addConceptActivitySaveImageButton"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:onClick="saveConcept"
-        android:text="@string/save_concept">
-
-    </Button>
-
-
-
-
-
 
 
 </LinearLayout>

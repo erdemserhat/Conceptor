@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.erdemserhat.conceptor.data.database.AppDatabase
 import com.erdemserhat.conceptor.databinding.MainActivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
+import com.erdemserhat.conceptor.ui.main.adapters.AdapterOperations
 import com.erdemserhat.conceptor.ui.main.adapters.PostsAdapter
 
 class MainActivity : BaseActivity<MainActivityBinding> () {
@@ -19,12 +20,10 @@ class MainActivity : BaseActivity<MainActivityBinding> () {
         super.onCreate(savedInstanceState)
         val appDatabase = AppDatabase(this)
         appDatabase.readPosts()
-        val x = 5
-        Log.d("TAG", "x değeri: $x")
-
         val adapter = PostsAdapter()
         binding.mainActivityRecyclerView.adapter=adapter
         binding.mainActivityRecyclerView.layoutManager = LinearLayoutManager(this)
+        AdapterOperations.setAdapter(adapter)
 
 
 
