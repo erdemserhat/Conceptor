@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- colors.xml dosyasında renkleri tanımlayın -->
+    <color name="my_primary">#3F51B5</color>
+    <color name="my_primary_dark">#303F9F</color>
+    <color name="my_accent">#FF4081</color>
 </resources>

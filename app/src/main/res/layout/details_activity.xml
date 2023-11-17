@@ -10,32 +10,46 @@
         android:id="@+id/detailsActivityPostTitle"
         android:textColor="@color/black"
         android:gravity="center"
+        android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:text="@string/example_post_title"
         android:textSize="20sp">
     </TextView>
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:id="@+id/detailsActivityPostImage"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/example_post_image_transcription">
-    </ImageView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_height="wrap_content"
-        android:maxLines="10"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:id="@+id/detailsActivityPostTranscription"
-        android:ellipsize="end"
-        android:layout_gravity="center"
-        android:text="@string/example_post_transcription">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content">
 
-    </TextView>
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:id="@+id/detailsActivityPostImage"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/example_post_image_transcription">
+        </ImageView>
+
+
+        <TextView
+            android:id="@+id/detailsActivityPostTranscription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/much_did_had_call_new_drew_that_kept_limits_expect_wonder_law_she_now_has_you_views_woman_noisy_match_money_rooms_to_up_remark_it_eldest_length_oh_passed_off_because_yet_mistake_feeling_has_men_consulted_disposing_to_moonlight_ye_extremity_engage_piqued_in_on_coming_building_mr_concerns_servants_in_he_outlived_am_breeding_he_so_lain_good_miss_when_sell_some_at_if_told_hand_so_an_rich_gave_next_how_doubt_yet_again_see_son_smart_while_mirth_large_of_on_front_ye_he_greater_related_adapted_proceed_entered_an_through_it_examine_express_promise_no_past_add_size_game_cold_girl_off_how_old_of_be_talent_me_answer_do_relied_mistress_in_on_so_laughing_throwing_endeavor_occasion_welcomed_gravity_sir_brandon_calling_can_no_years_do_widow_house_delay_stand_prospect_six_kindness_use_steepest_new_ask_high_gone_kind_calm_call_as_ever_is_introduced_melancholy_estimating_motionless_on_up_as_do_of_as_by_belonging_therefore_suspicion_elsewhere_am_household_described_domestic_suitable_bachelor_for_landlord_fat_warmly_little_before_cousin_sussex_entire_men_set_blessing_it_ladyship_on_sensible_judgment_settling_outweigh_worse_linen_an_of_civil_jokes_leave_offer_parties_all_clothes_removal_cheered_calling_prudent_her_and_residence_for_met_the_estimable_disposing_mean_if_he_they_been_no_hold_mr_is_at_much_do_made_took_held_help_latter_person_am_secure_of_estate_genius_at"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+    </ScrollView>
+
+
+
+
 
 </LinearLayout>

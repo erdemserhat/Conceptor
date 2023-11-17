@@ -8,11 +8,14 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import com.erdemserhat.conceptor.R
 import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 import com.erdemserhat.conceptor.databinding.AddConceptAcitivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
@@ -32,6 +35,10 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
         presenter.attachView(this) // Presenter'ı View'a bağla
         registerLauncher()
 
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+        }
+
     }
 
 
@@ -44,17 +51,6 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
 
     }
 
-
-    fun saveConcept(view:View){
-        val conceptTitle:String = binding.addConceptActivityEditTextTitle.text.toString()
-        val conceptTranscription:String = binding.addConceptActivityEditTextPostDescription.text.toString()
-        val conceptImageBitmap = BitmapOperations.makeSmallerBitmap(selectedBitmap,300)
-        var blobImage = BitmapOperations.bitMapToByteArray(conceptImageBitmap)
-        println(blobImage.size)
-        val post: Posts = Posts(conceptTitle,conceptTranscription,blobImage)
-        presenter.savePost(post)
-
-    }
 
 
     override fun showSelectedImage(bitmap: Bitmap?) {
@@ -127,5 +123,32 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
 
     override fun getViewBinding(): AddConceptAcitivityBinding {
         return AddConceptAcitivityBinding.inflate(layoutInflater)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.import_menu    ,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.importMenuSaveButton->{
+                val conceptTitle:String = binding.addConceptActivityEditTextTitle.text.toString()
+                val conceptTranscription:String = binding.addConceptActivityEditTextPostDescription.text.toString()
+                val conceptImageBitmap = BitmapOperations.makeSmallerBitmap(selectedBitmap,300)
+                var blobImage = BitmapOperations.bitMapToByteArray(conceptImageBitmap)
+                println(blobImage.size)
+                val post: Posts = Posts(conceptTitle,conceptTranscription,blobImage)
+                presenter.savePost(post)
+
+            }
+
+            android.R.id.home->{
+                onBackPressed()
+            }
+
+        }
+
+        return true
     }
 }
