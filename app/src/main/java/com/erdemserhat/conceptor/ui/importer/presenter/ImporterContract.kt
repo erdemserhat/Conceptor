@@ -1,7 +1,7 @@
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import com.erdemserhat.conceptor.data.database.repository.posts.Posts
+import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 
 interface ImporterContract {
 

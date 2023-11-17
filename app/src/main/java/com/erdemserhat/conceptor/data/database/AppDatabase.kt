@@ -4,10 +4,8 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import com.erdemserhat.conceptor.data.database.repository.posts.Posts
-import com.erdemserhat.conceptor.utils.AppConstants
+import com.erdemserhat.conceptor.data.database.repository.dataset.PostsDataset
+import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 
 class AppDatabase(val context: Context):DatabaseOperations {
     private lateinit var myDatabase:SQLiteDatabase
@@ -66,7 +64,7 @@ class AppDatabase(val context: Context):DatabaseOperations {
             postList.add(post)
 
         }
-        AppConstants.postList=postList
+        PostsDataset.postList=postList
 
     }
 

@@ -1,3 +1,6 @@
+package com.erdemserhat.conceptor.ui.importer.presenter
+
+import ImporterContract
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -6,7 +9,7 @@ import android.os.Build
 import android.provider.MediaStore
 import androidx.core.content.ContextCompat
 import com.erdemserhat.conceptor.data.database.AppDatabase
-import com.erdemserhat.conceptor.data.database.repository.posts.Posts
+import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 import com.erdemserhat.conceptor.ui.main.view.MainActivity
 
 class ImporterPresenter : ImporterContract.Presenter {

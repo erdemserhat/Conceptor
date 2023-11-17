@@ -1,7 +1,6 @@
-package com.erdemserhat.conceptor.data.database.repository.posts
+package com.erdemserhat.conceptor.data.database.repository.datamodel
 
 import java.io.Serializable
-import java.sql.Blob
 
 data class Posts(
     val title:String,

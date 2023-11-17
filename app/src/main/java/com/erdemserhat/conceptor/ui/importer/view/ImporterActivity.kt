@@ -1,7 +1,7 @@
 package com.erdemserhat.conceptor.ui.importer.view
 
 import ImporterContract
-import ImporterPresenter
+import com.erdemserhat.conceptor.ui.importer.presenter.ImporterPresenter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -13,12 +13,11 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import com.erdemserhat.conceptor.data.database.repository.posts.Posts
+import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 import com.erdemserhat.conceptor.databinding.AddConceptAcitivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
-import com.erdemserhat.conceptor.utils.AppConstants
+import com.erdemserhat.conceptor.utils.bitmap.BitmapOperations
 import com.google.android.material.snackbar.Snackbar
-import java.sql.Blob
 
 class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterContract.View {
 
@@ -49,8 +48,8 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
     fun saveConcept(view:View){
         val conceptTitle:String = binding.addConceptActivityEditTextTitle.text.toString()
         val conceptTranscription:String = binding.addConceptActivityEditTextPostDescription.text.toString()
-        val conceptImageBitmap = AppConstants.makeSmallerBitmap(selectedBitmap,300)
-        var blobImage = AppConstants.bitMapToBlob(conceptImageBitmap)
+        val conceptImageBitmap = BitmapOperations.makeSmallerBitmap(selectedBitmap,300)
+        var blobImage = BitmapOperations.bitMapToByteArray(conceptImageBitmap)
         println(blobImage.size)
         val post: Posts = Posts(conceptTitle,conceptTranscription,blobImage)
         presenter.savePost(post)
@@ -62,7 +61,7 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
 
         binding.addConceptActivityImageView.setImageBitmap(bitmap)
         selectedBitmap=bitmap!!
-        println(AppConstants.bitMapToBlob(selectedBitmap).size)
+        println(BitmapOperations.bitMapToByteArray(selectedBitmap).size)
     }
 
     override fun showPermissionNeededMessage() {

@@ -1,6 +1,6 @@
 package com.erdemserhat.conceptor.data.database
 
-import com.erdemserhat.conceptor.data.database.repository.posts.Posts
+import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 
 interface DatabaseOperations {
 
