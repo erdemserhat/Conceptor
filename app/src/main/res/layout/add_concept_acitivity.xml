@@ -23,17 +23,42 @@
         android:lines="10"
         android:inputType="textMultiLine" />
 
-    <Button
-        android:id="@+id/addConceptActivityUploadImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:onClick="saveImage"
-        android:text="@string/upload_image">
+        android:gravity="center"
+        android:layout_height="wrap_content">
 
-    </Button>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_gravity="bottom"
+            android:textSize="20sp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:text="Attach Image">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/addConceptActivityUploadImageButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/baseline_add_photo_alternate_24"
+            android:layout_marginRight="10dp"
+            android:onClick="saveImage"
+            android:text="@string/upload_image">
+
+        </Button>
+
+
+    </LinearLayout>
+
+
 
     <ImageView
         android:layout_width="300dp"

@@ -35,6 +35,10 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
         presenter.attachView(this) // Presenter'ı View'a bağla
         registerLauncher()
 
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+        }
+
     }
 
 
@@ -136,11 +140,15 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
                 println(blobImage.size)
                 val post: Posts = Posts(conceptTitle,conceptTranscription,blobImage)
                 presenter.savePost(post)
-                return true
 
             }
+
+            android.R.id.home->{
+                onBackPressed()
+            }
+
         }
 
-        return super.onOptionsItemSelected(item)
+        return true
     }
 }

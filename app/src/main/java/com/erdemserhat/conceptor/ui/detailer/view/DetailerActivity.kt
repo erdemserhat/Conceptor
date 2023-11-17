@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.compose.ui.graphics.Paint
 import com.erdemserhat.conceptor.R
 import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 import com.erdemserhat.conceptor.databinding.DetailsActivityBinding
@@ -33,6 +34,7 @@ class DetailerActivity: BaseActivity<DetailsActivityBinding> (), DetailerContrac
         binding.detailsActivityPostTitle.text=title
         binding.detailsActivityPostTranscription.text=transcription
         binding.detailsActivityPostImage.setImageBitmap(BitmapOperations.byteArrayToBitMap(post.image))
+
 
         //For back button
 
