@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="20dp" /> <!-- 20dp oval köşe yarıçapı, istediğiniz değeri kullanabilirsiniz -->
+    <solid android:color="#DFCFCF" /> <!-- Arka plan rengi, istediğiniz rengi buradan seçebilirsiniz -->
+</shape>
