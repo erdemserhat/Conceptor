@@ -5,7 +5,8 @@ import java.sql.Blob
 data class Posts(
     val title:String,
     val transcription:String,
-    val image: Blob
+    val image: ByteArray,
+    val id:Int?=null
 
 
 )

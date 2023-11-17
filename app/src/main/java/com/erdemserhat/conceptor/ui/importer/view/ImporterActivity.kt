@@ -13,8 +13,10 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import com.erdemserhat.conceptor.data.database.repository.posts.Posts
 import com.erdemserhat.conceptor.databinding.AddConceptAcitivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
+import com.erdemserhat.conceptor.utils.AppConstants
 import com.google.android.material.snackbar.Snackbar
 import java.sql.Blob
 
@@ -43,10 +45,13 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
 
     }
 
+
     fun saveConcept(view:View){
         val conceptTitle:String = binding.addConceptActivityEditTextTitle.text.toString()
         val conceptTranscription:String = binding.addConceptActivityEditTextPostDescription.text.toString()
-        var conceptImage:Bitmap = selectedBitmap
+        var conceptImage:ByteArray = AppConstants.bitMapToBlob(bitmap = selectedBitmap)
+        val post: Posts = Posts(conceptTitle,conceptTranscription,conceptImage)
+        presenter.savePost(post)
 
     }
 

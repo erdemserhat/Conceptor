@@ -5,6 +5,8 @@ import android.graphics.ImageDecoder
 import android.os.Build
 import android.provider.MediaStore
 import androidx.core.content.ContextCompat
+import com.erdemserhat.conceptor.data.database.AppDatabase
+import com.erdemserhat.conceptor.data.database.repository.posts.Posts
 
 class ImporterPresenter : ImporterContract.Presenter {
 
@@ -52,6 +54,13 @@ class ImporterPresenter : ImporterContract.Presenter {
 
     override fun attachView(view: ImporterContract.View) {
         this.view = view
+    }
+
+    override fun savePost(post:Posts) {
+        val appDatabase: AppDatabase = AppDatabase(view!!.getViewContext())
+        appDatabase.insertPost(post)
+        appDatabase.readPosts()
+
     }
 
     override fun detachView() {

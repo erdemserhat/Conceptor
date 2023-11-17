@@ -1,6 +1,7 @@
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import com.erdemserhat.conceptor.data.database.repository.posts.Posts
 
 interface ImporterContract {
 
@@ -20,6 +21,7 @@ interface ImporterContract {
         fun handleImageSelection(data: Intent?)
         fun handlePermissionResult(isGranted: Boolean)
         fun attachView(view: View)
+        fun savePost(post: Posts)
         fun detachView()
         fun hasStoragePermission(): Boolean
 
