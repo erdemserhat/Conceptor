@@ -49,16 +49,20 @@ class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterCon
     fun saveConcept(view:View){
         val conceptTitle:String = binding.addConceptActivityEditTextTitle.text.toString()
         val conceptTranscription:String = binding.addConceptActivityEditTextPostDescription.text.toString()
-        var conceptImage:ByteArray = AppConstants.bitMapToBlob(bitmap = selectedBitmap)
-        val post: Posts = Posts(conceptTitle,conceptTranscription,conceptImage)
+        val conceptImageBitmap = AppConstants.makeSmallerBitmap(selectedBitmap,300)
+        var blobImage = AppConstants.bitMapToBlob(conceptImageBitmap)
+        println(blobImage.size)
+        val post: Posts = Posts(conceptTitle,conceptTranscription,blobImage)
         presenter.savePost(post)
 
     }
 
 
     override fun showSelectedImage(bitmap: Bitmap?) {
-        selectedBitmap = bitmap!!
+
         binding.addConceptActivityImageView.setImageBitmap(bitmap)
+        selectedBitmap=bitmap!!
+        println(AppConstants.bitMapToBlob(selectedBitmap).size)
     }
 
     override fun showPermissionNeededMessage() {

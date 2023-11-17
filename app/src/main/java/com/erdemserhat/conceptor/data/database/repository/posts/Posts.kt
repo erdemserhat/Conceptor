@@ -1,5 +1,6 @@
 package com.erdemserhat.conceptor.data.database.repository.posts
 
+import java.io.Serializable
 import java.sql.Blob
 
 data class Posts(
@@ -9,4 +10,4 @@ data class Posts(
     val id:Int?=null
 
 
-)
+):Serializable

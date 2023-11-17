@@ -19,7 +19,6 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:id="@+id/detailsActivityPostImage"
-        android:src="@drawable/ic_launcher_foreground"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:contentDescription="@string/example_post_image_transcription">

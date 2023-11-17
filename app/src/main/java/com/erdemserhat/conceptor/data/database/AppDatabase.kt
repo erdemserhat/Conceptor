@@ -5,6 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.erdemserhat.conceptor.data.database.repository.posts.Posts
 import com.erdemserhat.conceptor.utils.AppConstants
 
@@ -19,13 +20,19 @@ class AppDatabase(val context: Context):DatabaseOperations {
         //Create or Open Database
         myDatabase= context.openOrCreateDatabase("Posts.db",MODE_PRIVATE,null)
         //Create Table
-        myDatabase.execSQL("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY,title VARCHAR, transcription VARCHAR,image Blob)")
+        myDatabase.execSQL("CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY,title VARCHAR, transcription VARCHAR,image BLOB)")
 
     }
 
     override fun insertPost(post:Posts) {
-        var (title, transcription, image) = post
-        myDatabase.execSQL("INSERT INTO posts (title,transcription,image) VALUES ('$title','$transcription','$image')")
+        val (title, transcription, image) = post
+        val sqlString = "INSERT INTO posts (title,transcription,image) VALUES (?,?,?)"
+        val statement = myDatabase.compileStatement(sqlString)
+        statement.bindString(1,title)
+        statement.bindString(2,transcription)
+        statement.bindBlob(3,image)
+        statement.execute()
+
 
     }
 
@@ -51,6 +58,7 @@ class AppDatabase(val context: Context):DatabaseOperations {
         var post: Posts? = null
         //return
         val postList:MutableList<Posts> = mutableListOf()
+
 
 
         while (cursor.moveToNext()){

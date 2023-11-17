@@ -7,6 +7,7 @@ import android.provider.MediaStore
 import androidx.core.content.ContextCompat
 import com.erdemserhat.conceptor.data.database.AppDatabase
 import com.erdemserhat.conceptor.data.database.repository.posts.Posts
+import com.erdemserhat.conceptor.ui.main.view.MainActivity
 
 class ImporterPresenter : ImporterContract.Presenter {
 
@@ -60,6 +61,9 @@ class ImporterPresenter : ImporterContract.Presenter {
         val appDatabase: AppDatabase = AppDatabase(view!!.getViewContext())
         appDatabase.insertPost(post)
         appDatabase.readPosts()
+        val intent :Intent =Intent(view!!.getViewContext(),MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)///-----> Important
+        view!!.getViewContext().startActivity(intent)
 
     }
 

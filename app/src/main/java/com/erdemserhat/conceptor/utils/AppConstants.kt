@@ -16,9 +16,31 @@ object AppConstants {
 
     }
 
-    fun blobToBitMap(byteArray:ByteArray):Bitmap{
-        val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-        return bitmap
+    fun blobToBitMap(byteArray:ByteArray):Bitmap?{
+        if (byteArray != null) {
+            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+            return bitmap
+        }
+
+        return null
 
     }
+
+    fun makeSmallerBitmap(image: Bitmap, maximumSize : Int) : Bitmap {
+        var width = image.width
+        var height = image.height
+
+        val bitmapRatio : Double = width.toDouble() / height.toDouble()
+        if (bitmapRatio > 1) {
+            width = maximumSize
+            val scaledHeight = width / bitmapRatio
+            height = scaledHeight.toInt()
+        } else {
+            height = maximumSize
+            val scaledWidth = height * bitmapRatio
+            width = scaledWidth.toInt()
+        }
+        return Bitmap.createScaledBitmap(image,width,height,true)
+    }
+
 }
