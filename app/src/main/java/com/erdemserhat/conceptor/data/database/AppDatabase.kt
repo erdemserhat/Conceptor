@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.erdemserhat.conceptor.data.database.repository.dataset.PostsDataset
 import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
+import com.erdemserhat.conceptor.ui.main.adapters.AdapterOperations
 
 class AppDatabase(val context: Context):DatabaseOperations {
     private lateinit var myDatabase:SQLiteDatabase
@@ -65,6 +66,7 @@ class AppDatabase(val context: Context):DatabaseOperations {
 
         }
         PostsDataset.postList=postList
+        //AdapterOperations.notifyDataSet()
 
     }
 

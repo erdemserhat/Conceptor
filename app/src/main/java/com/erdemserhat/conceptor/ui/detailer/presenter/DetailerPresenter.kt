@@ -9,7 +9,6 @@ class DetailerPresenter:DetailerContract.Presenter {
         val database:AppDatabase = AppDatabase(view.getViewContext())
         database.deletePost(post)
         database.readPosts()
-       // AdapterOperations.notifyDataSet()
 
 
     }
