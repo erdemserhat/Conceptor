@@ -5,18 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.compose.ui.graphics.Paint
 import com.erdemserhat.conceptor.R
 import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 import com.erdemserhat.conceptor.databinding.DetailsActivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
-import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerContract
+import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerMVPPresenter
 import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerPresenter
 import com.erdemserhat.conceptor.ui.main.view.MainActivity
 import com.erdemserhat.conceptor.utils.bitmap.BitmapOperations
 
-class DetailerActivity: BaseActivity<DetailsActivityBinding> (), DetailerContract.View {
-    private lateinit var presenter:DetailerContract.Presenter
+class DetailerActivity: BaseActivity<DetailsActivityBinding> (), DetailerMVPView {
+    private lateinit var presenter:DetailerMVPPresenter
     private lateinit var post:Posts
     override fun getViewBinding(): DetailsActivityBinding {
         return DetailsActivityBinding.inflate(layoutInflater)
