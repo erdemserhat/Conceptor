@@ -8,4 +8,6 @@ interface DetailerMVPPresenter {
     fun attachView(view: DetailerMVPView)
     fun detachView()
 
+    fun clearActivitiesAndGoHome()
+
 }

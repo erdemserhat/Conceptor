@@ -14,9 +14,9 @@ import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerPresenter
 import com.erdemserhat.conceptor.ui.main.view.MainActivity
 import com.erdemserhat.conceptor.utils.bitmap.BitmapOperations
 
-class DetailerActivity: BaseActivity<DetailsActivityBinding> (), DetailerMVPView {
-    private lateinit var presenter:DetailerMVPPresenter
-    private lateinit var post:Posts
+class DetailerActivity : BaseActivity<DetailsActivityBinding>(), DetailerMVPView {
+    private lateinit var presenter: DetailerMVPPresenter
+    private lateinit var post: Posts
     override fun getViewBinding(): DetailsActivityBinding {
         return DetailsActivityBinding.inflate(layoutInflater)
 
@@ -28,10 +28,10 @@ class DetailerActivity: BaseActivity<DetailsActivityBinding> (), DetailerMVPView
         presenter = DetailerPresenter()
         presenter.attachView(this)
         val intent: Intent = intent
-        post= intent.getSerializableExtra("post") as Posts
-        val(title,transcription,image,id) = post!!
-        binding.detailsActivityPostTitle.text=title
-        binding.detailsActivityPostTranscription.text=transcription
+        post = intent.getSerializableExtra("post") as Posts
+        val (title, transcription, image, id) = post!!
+        binding.detailsActivityPostTitle.text = title
+        binding.detailsActivityPostTranscription.text = transcription
         binding.detailsActivityPostImage.setImageBitmap(BitmapOperations.byteArrayToBitMap(post.image))
 
 
@@ -40,21 +40,21 @@ class DetailerActivity: BaseActivity<DetailsActivityBinding> (), DetailerMVPView
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
         }
-}
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.details_menu,menu)
+        menuInflater.inflate(R.menu.details_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.detailsMenuDeleteButton->{
+        when (item.itemId) {
+            R.id.detailsMenuDeleteButton -> {
                 deletePost()
 
             }
 
-            android.R.id.home->{
+            android.R.id.home -> {
                 onBackPressed()
             }
         }
@@ -63,9 +63,7 @@ class DetailerActivity: BaseActivity<DetailsActivityBinding> (), DetailerMVPView
 
     override fun deletePost() {
         presenter.handleDeleteDatabaseOperation(post)
-        val intent:Intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
+        presenter.clearActivitiesAndGoHome()
     }
 
     override fun getViewContext(): Context {
