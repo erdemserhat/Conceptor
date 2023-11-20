@@ -1,5 +1,6 @@
 package com.erdemserhat.conceptor.ui.base.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -9,11 +10,13 @@ import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.erdemserhat.conceptor.R
+import com.erdemserhat.conceptor.ui.base.presenter.BaseMVPPresenter
 import com.erdemserhat.conceptor.ui.importer.view.ImporterActivity
 import com.erdemserhat.conceptor.ui.main.view.MainActivity
 
-abstract class BaseActivity<VB : ViewBinding> :AppCompatActivity() {
+abstract class BaseActivity<VB : ViewBinding> :AppCompatActivity(), BaseMVPView {
     lateinit var binding:VB
+    private var presenter:BaseMVPPresenter<BaseMVPView> ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,7 @@ abstract class BaseActivity<VB : ViewBinding> :AppCompatActivity() {
         binding = getViewBinding()
         val view = binding.root
         setContentView(view)
+        //presenter?.attachView(this)
 
 
     }
@@ -52,4 +56,7 @@ abstract class BaseActivity<VB : ViewBinding> :AppCompatActivity() {
 
     abstract fun getViewBinding(): VB
 
+    override fun getViewContext(): Context {
+        return this
+    }
 }

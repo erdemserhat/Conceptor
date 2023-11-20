@@ -1,6 +1,5 @@
 package com.erdemserhat.conceptor.ui.importer.presenter
 
-import ImporterContract
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -10,11 +9,12 @@ import android.provider.MediaStore
 import androidx.core.content.ContextCompat
 import com.erdemserhat.conceptor.data.database.AppDatabase
 import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
+import com.erdemserhat.conceptor.ui.importer.view.ImporterMVPView
 import com.erdemserhat.conceptor.ui.main.view.MainActivity
 
-class ImporterPresenter : ImporterContract.Presenter {
+class ImporterPresenter : ImporterMVPPresenter {
 
-    private var view: ImporterContract.View? = null
+    private var view: ImporterMVPView? = null
 
 
     override fun handleImageSelection(data: Intent?) {
@@ -56,7 +56,7 @@ class ImporterPresenter : ImporterContract.Presenter {
         }
     }
 
-    override fun attachView(view: ImporterContract.View) {
+    override fun attachView(view: ImporterMVPView) {
         this.view = view
     }
 
