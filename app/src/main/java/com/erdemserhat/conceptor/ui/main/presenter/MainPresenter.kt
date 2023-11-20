@@ -1,10 +1,11 @@
 package com.erdemserhat.conceptor.ui.main.presenter
 
 import com.erdemserhat.conceptor.data.database.AppDatabase
+import com.erdemserhat.conceptor.ui.main.view.MainMVPView
 
-class MainPresenter : MainContract.Presenter {
-    private lateinit var view: MainContract.View
-    override fun attachView(view: MainContract.View) {
+class MainPresenter : MainMVPPresenter {
+    private lateinit var view: MainMVPView
+    override fun attachView(view: MainMVPView) {
         this.view=view
 
     }

@@ -1,6 +1,5 @@
 package com.erdemserhat.conceptor.ui.importer.view
 
-import ImporterContract
 import com.erdemserhat.conceptor.ui.importer.presenter.ImporterPresenter
 import android.content.Context
 import android.content.Intent
@@ -19,12 +18,13 @@ import com.erdemserhat.conceptor.R
 import com.erdemserhat.conceptor.data.database.repository.datamodel.Posts
 import com.erdemserhat.conceptor.databinding.AddConceptAcitivityBinding
 import com.erdemserhat.conceptor.ui.base.view.BaseActivity
+import com.erdemserhat.conceptor.ui.importer.presenter.ImporterMVPPresenter
 import com.erdemserhat.conceptor.utils.bitmap.BitmapOperations
 import com.google.android.material.snackbar.Snackbar
 
-class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterContract.View {
+class ImporterActivity : BaseActivity<AddConceptAcitivityBinding>(), ImporterMVPView {
 
-    private lateinit var presenter: ImporterContract.Presenter
+    private lateinit var presenter: ImporterMVPPresenter
     private lateinit var activityResultLauncher: ActivityResultLauncher<Intent>
     private lateinit var permissionLauncher: ActivityResultLauncher<String>
     private lateinit var selectedBitmap: Bitmap
