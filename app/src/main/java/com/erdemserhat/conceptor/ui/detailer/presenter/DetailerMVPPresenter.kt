@@ -7,7 +7,7 @@ import com.erdemserhat.conceptor.ui.base.presenter.BasePresenter
 import com.erdemserhat.conceptor.ui.base.view.BaseMVPView
 import com.erdemserhat.conceptor.ui.detailer.view.DetailerMVPView
 
-interface DetailerMVPPresenter<V : DetailerMVPView> : BaseMVPPresenter<V> {
+interface DetailerMVPPresenter: BaseMVPPresenter<DetailerMVPView> {
     fun handleDeleteDatabaseOperation(post: Posts)
 
     fun clearActivitiesAndGoHome()

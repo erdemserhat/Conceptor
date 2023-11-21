@@ -16,7 +16,6 @@ import com.erdemserhat.conceptor.ui.main.view.MainActivity
 
 abstract class BaseActivity<VB : ViewBinding> :AppCompatActivity(), BaseMVPView {
     lateinit var binding:VB
-    private var presenter:BaseMVPPresenter<BaseMVPView> ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +23,7 @@ abstract class BaseActivity<VB : ViewBinding> :AppCompatActivity(), BaseMVPView 
         binding = getViewBinding()
         val view = binding.root
         setContentView(view)
-        presenter?.attachView(this)
+
 
 
     }

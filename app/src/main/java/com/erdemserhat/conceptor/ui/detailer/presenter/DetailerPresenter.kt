@@ -11,15 +11,13 @@ import com.erdemserhat.conceptor.ui.detailer.view.DetailerMVPView
 import com.erdemserhat.conceptor.ui.main.adapters.AdapterOperations
 import com.erdemserhat.conceptor.ui.main.view.MainActivity
 
-class DetailerPresenter<V: DetailerMVPView> : BaseMVPPresenter<V>, DetailerMVPPresenter<V>, BasePresenter<V>(){
+class DetailerPresenter: BaseMVPPresenter<DetailerMVPView>, DetailerMVPPresenter, BasePresenter<DetailerMVPView>(){
     override fun handleDeleteDatabaseOperation(post: Posts) {
         val database: AppDatabase? = view?.getViewContext()?.let { AppDatabase(it) }
         database?.deletePost(post)
         database?.readPosts()
 
-
     }
-
 
     override fun clearActivitiesAndGoHome() {
         val intent:Intent = Intent(view?.getViewContext(), MainActivity::class.java)

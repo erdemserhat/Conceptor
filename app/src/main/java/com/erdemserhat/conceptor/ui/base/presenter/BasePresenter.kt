@@ -1,6 +1,5 @@
 package com.erdemserhat.conceptor.ui.base.presenter
 
-import android.content.Context
 import com.erdemserhat.conceptor.ui.base.view.BaseMVPView
 
 abstract class BasePresenter<V : BaseMVPView> :BaseMVPPresenter<V> {

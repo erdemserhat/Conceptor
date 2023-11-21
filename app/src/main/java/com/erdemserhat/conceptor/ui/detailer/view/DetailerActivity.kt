@@ -12,11 +12,10 @@ import com.erdemserhat.conceptor.ui.base.view.BaseActivity
 import com.erdemserhat.conceptor.ui.base.view.BaseMVPView
 import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerMVPPresenter
 import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerPresenter
-import com.erdemserhat.conceptor.ui.main.view.MainActivity
 import com.erdemserhat.conceptor.utils.bitmap.BitmapOperations
 
 class DetailerActivity : BaseActivity<DetailsActivityBinding>(), DetailerMVPView, BaseMVPView {
-    private lateinit var presenter: DetailerMVPPresenter<DetailerMVPView>
+    private lateinit var presenter: DetailerMVPPresenter
     private lateinit var post: Posts
     override fun getViewBinding(): DetailsActivityBinding {
         return DetailsActivityBinding.inflate(layoutInflater)
