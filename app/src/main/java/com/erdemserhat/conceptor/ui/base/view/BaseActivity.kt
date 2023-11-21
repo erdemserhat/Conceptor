@@ -24,7 +24,7 @@ abstract class BaseActivity<VB : ViewBinding> :AppCompatActivity(), BaseMVPView 
         binding = getViewBinding()
         val view = binding.root
         setContentView(view)
-        //presenter?.attachView(this)
+        presenter?.attachView(this)
 
 
     }

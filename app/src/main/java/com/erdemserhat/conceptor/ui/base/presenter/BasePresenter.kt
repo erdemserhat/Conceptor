@@ -3,16 +3,14 @@ package com.erdemserhat.conceptor.ui.base.presenter
 import android.content.Context
 import com.erdemserhat.conceptor.ui.base.view.BaseMVPView
 
-class BasePresenter():BaseMVPPresenter<BaseMVPView<Context>> {
+abstract class BasePresenter<V : BaseMVPView> :BaseMVPPresenter<V> {
     //Inject
-    private var view: BaseMVPView<Context>? = null
-    override fun attachView(view: BaseMVPView<Context>) {
+    public var view: V? = null
+    override fun attachView(view: V?) {
         this.view=view
     }
 
     override fun detachView() {
-        view=null
+        view = null
     }
-
-
 }
