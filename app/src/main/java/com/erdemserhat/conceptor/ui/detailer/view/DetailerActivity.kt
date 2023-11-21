@@ -12,7 +12,6 @@ import com.erdemserhat.conceptor.ui.base.view.BaseActivity
 import com.erdemserhat.conceptor.ui.base.view.BaseMVPView
 import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerMVPPresenter
 import com.erdemserhat.conceptor.ui.detailer.presenter.DetailerPresenter
-import com.erdemserhat.conceptor.ui.main.view.MainActivity
 import com.erdemserhat.conceptor.utils.bitmap.BitmapOperations
 
 class DetailerActivity : BaseActivity<DetailsActivityBinding>(), DetailerMVPView, BaseMVPView {
@@ -27,7 +26,7 @@ class DetailerActivity : BaseActivity<DetailsActivityBinding>(), DetailerMVPView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         presenter = DetailerPresenter()
-        //presenter.attachView(this)
+        presenter.attachView(this)
         val intent: Intent = intent
         post = intent.getSerializableExtra("post") as Posts
         val (title, transcription, image, id) = post!!
@@ -67,7 +66,4 @@ class DetailerActivity : BaseActivity<DetailsActivityBinding>(), DetailerMVPView
         presenter.clearActivitiesAndGoHome()
     }
 
-    override fun getViewContext(): Context {
-        return this
-    }
 }
